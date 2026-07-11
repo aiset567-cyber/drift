@@ -1,0 +1,608 @@
+/* ==========================================================================
+   漂流誌 Drift Chronicle — 全域樣式表
+   設計語彙：溫暖微米白／深炭灰／鼠尾草綠／大地駝色
+   原則：手機優先、極致輕量、無框架、無多餘 JS
+   ========================================================================== */
+
+/* ---- 1. Reset ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---- 2. Design Tokens ---- */
+:root {
+  /* 色彩計畫 */
+  --color-bg: #fcfbfa;
+  --color-bg-alt: #f5f1ec;
+  --color-bg-header: rgba(252, 251, 250, 0.82);
+  --color-text: #2c2a29;
+  --color-text-soft: #6b6560;
+  --color-accent: #4a5d4e;
+  --color-accent-dark: #384938;
+  --color-accent-light: #e7ece7;
+  --color-link: #8c7355;
+  --color-link-dark: #6f5a42;
+  --color-border: #e6e1d8;
+
+  /* 字體 */
+  --font-heading: Georgia, "Songti TC", "PMingLiU", "Noto Serif TC", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "PingFang TC",
+    "Microsoft JhengHei", "Helvetica Neue", "Noto Sans TC", sans-serif;
+
+  /* 版面 */
+  --max-width: 720px;
+  --side-pad: 24px;
+  --radius: 14px;
+}
+
+/* ---- 3. Base ---- */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 400;
+}
+
+h2 {
+  font-size: clamp(1.35rem, 3.6vw, 1.85rem);
+  font-weight: 600;
+  margin: 2.25rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  color: var(--color-link-dark);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+strong {
+  color: var(--color-accent-dark);
+}
+
+blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1.25rem;
+  margin: 2.25rem 0;
+  font-style: italic;
+  color: var(--color-text-soft);
+  font-size: 1.05rem;
+}
+
+ul,
+ol {
+  padding-left: 1.4rem;
+  margin-bottom: 1.5em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+hr.rule {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2.5rem 0;
+}
+
+/* ---- 4. 導覽列 Header / Nav（手機優先：垂直排列，桌面轉橫向）---- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg-header);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.85rem var(--side-pad) 0.6rem;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.logo:hover {
+  color: var(--color-accent-dark);
+}
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 0.6rem;
+  padding: 0;
+}
+
+.site-nav a {
+  display: block;
+  padding: 0.55rem 0.6rem;
+  border-radius: 8px;
+  color: var(--color-text-soft);
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--color-accent-dark);
+  background: var(--color-accent-light);
+}
+
+@media (min-width: 768px) {
+  .nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 32px;
+  }
+  .site-nav ul {
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: 0;
+  }
+}
+
+/* ---- 5. 主內文容器 ---- */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--side-pad);
+}
+
+/* ---- 6. Hero 區塊（呼吸感光暈為簽名視覺元素）---- */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 3.75rem 0 2.5rem;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(74, 93, 78, 0.18), transparent 70%);
+  transform: translate(-50%, -50%) scale(0.9);
+  animation: breathe 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  max-width: 15ch;
+  margin: 0 auto;
+}
+
+.hero .lead {
+  max-width: 48ch;
+  margin: 1.1rem auto 0;
+  color: var(--color-text-soft);
+  font-size: 1.05rem;
+}
+
+/* ---- 7. 分隔符（葉形簽名圖示，取代通用編號標記）---- */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 3rem 0;
+  color: var(--color-accent);
+}
+
+.divider .line {
+  height: 1px;
+  width: 48px;
+  background: var(--color-border);
+}
+
+.divider svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ---- 8. 卡片：文章 / 服務 ---- */
+.article-card {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.article-card:last-child {
+  border-bottom: none;
+}
+
+.article-card figure {
+  margin: 0 0 1rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.article-card img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.article-card h2,
+.article-card h3 {
+  margin: 0 0 0.5rem;
+}
+
+.article-card p {
+  color: var(--color-text-soft);
+  margin-bottom: 0.85rem;
+}
+
+.service-card {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+  margin-top: 0;
+  color: var(--color-accent-dark);
+}
+
+.service-card .price {
+  display: inline-block;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-soft);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* ---- 9. 按鈕 / 連結型 CTA ---- */
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.6rem;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent-dark);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-dark);
+  color: #fff;
+}
+
+/* ---- 10. 心靈樹洞表單 ---- */
+.soul-box {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 2.25rem 1.5rem;
+  margin: 3rem 0 3.5rem;
+}
+
+.soul-box .eyebrow {
+  margin-bottom: 0.75rem;
+}
+
+.soul-box h2 {
+  margin-top: 0;
+}
+
+.soul-box .intro {
+  color: var(--color-text-soft);
+  margin-bottom: 1.75rem;
+}
+
+.soul-form label {
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  color: var(--color-text-soft);
+  margin-bottom: 0.4rem;
+}
+
+.soul-form input,
+.soul-form textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  margin-bottom: 1.35rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: #fff;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+}
+
+.soul-form textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.soul-form .field-note {
+  font-size: 0.8rem;
+  color: var(--color-text-soft);
+  margin-top: -1rem;
+  margin-bottom: 1.35rem;
+}
+
+.soul-form button {
+  width: 100%;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 0.2s ease;
+}
+
+.soul-form button:hover {
+  background: var(--color-accent-dark);
+}
+
+@media (min-width: 480px) {
+  .soul-form button {
+    width: auto;
+  }
+}
+
+/* ---- 11. Figure / Caption ---- */
+figure {
+  margin: 2rem 0;
+}
+
+figcaption {
+  font-size: 0.82rem;
+  color: var(--color-text-soft);
+  margin-top: 0.6rem;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+/* ---- 12. 文章專屬版型 ---- */
+.article-header {
+  padding: 2.5rem 0 1.5rem;
+  text-align: center;
+}
+
+.article-header .meta {
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+  margin-top: 1rem;
+}
+
+.article-body p {
+  margin-bottom: 1.6em;
+}
+
+/* ---- 13. Footer ---- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  margin-top: 4rem;
+  padding: 2.5rem var(--side-pad) 3rem;
+  background: var(--color-bg-alt);
+}
+
+.footer-wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-brand {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin-bottom: 0.4rem;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  margin-bottom: 1.5rem;
+}
+
+.footer-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.footer-nav a {
+  color: var(--color-text-soft);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-nav a:hover {
+  color: var(--color-accent-dark);
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--color-text-soft);
+  opacity: 0.8;
+}
+
+/* ---- 14. 關於頁專屬 ---- */
+.about-portrait {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.pull-note {
+  background: var(--color-accent-light);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  color: var(--color-accent-dark);
+  font-size: 0.98rem;
+}
+
+/* ---- 15. Utility ---- */
+.text-center {
+  text-align: center;
+}
+
+.mt-lg {
+  margin-top: 3rem;
+}
+/* --- 手機版：強制精簡 Header --- */
+@media (max-width: 768px) {
+    .site-header {
+        position: relative !important; /* 確保不被絕對定位撐開 */
+        padding: 5px 0 !important;     /* 將上下留白壓縮到極致 */
+        height: auto !important;       /* 讓高度隨內容自動縮放 */
+        min-height: 0 !important;      /* 移除所有隱形的最小高度限制 */
+    }
+
+    /* 將導覽列改為水平並縮小間距 */
+    .site-nav {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .site-nav ul {
+        display: flex !important;      /* 強制水平排列 */
+        justify-content: center;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .site-nav li {
+        margin: 0 8px !important;      /* 減少項目間距 */
+    }
+}
+/* 針對 article 內的圖片進行 100% 寬度設定 */
+article figure img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    display: block !important;
+    border-radius: 8px;
+}
