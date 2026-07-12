@@ -12,7 +12,7 @@
   <meta property="og:description" content="一位數位遊牧者的心靈旅程告白。">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.min.css">
 </head>
 <body>
 
@@ -21,6 +21,7 @@
     <a href="index.html" class="logo">漂流誌</a>
        <nav class="site-nav" aria-label="主導覽">
         <ul>
+          <li><a href="index.html">首頁</a></li>
           <li><a href="about.html" class="active">關於我</a></li>
           <li><a href="archive/trip.html">旅途紀行</a></li>
           <li><a href="portfolio.html">作品與服務</a></li>
@@ -62,13 +63,13 @@
       <p>如果你想更深入地聊聊你的處境，我在<a href="portfolio.html">作品與服務</a>頁面，準備了一對一的陪伴與諮詢方案，也歡迎透過<a href="index.html#soul-box">心靈樹洞</a>寫信給我。</p>
     <div class="social-links">
   <a href="https://facebook.com/will.guo.52" target="_blank" rel="noopener noreferrer" title="在 Facebook 追蹤">
-    <i class="fab fa-facebook"></i>
+    <i class="ti ti-brand-facebook"></i>
   </a>
   <a href="https://instagram.com/willc_chen7" target="_blank" rel="noopener noreferrer" title="在 Instagram 追蹤">
-    <i class="fab fa-instagram"></i>
+    <i class="ti ti-brand-instagram"></i>
   </a>
   <a href="https://youtube.com/@kongjiewilliam" target="_blank" rel="noopener noreferrer" title="訂閱 YouTube 頻道">
-    <i class="fab fa-youtube"></i>
+    <i class="ti ti-brand-youtube"></i>
   </a>
 </div>
     </article>
